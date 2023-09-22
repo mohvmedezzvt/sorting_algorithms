@@ -11,7 +11,6 @@ void insertion_sort_list(listint_t **list)
 {
     listint_t *temp, *cur, *node;
 
-    int i = 0;
     cur = *list;
     while (cur != NULL)
     {
