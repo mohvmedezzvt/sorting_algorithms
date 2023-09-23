@@ -21,9 +21,10 @@ void swap(int *a, int *b)
 size_t swapper(int *arr, size_t low, size_t high)
 {
 	size_t i = low - 1;
+	size_t j;
 	int pivot = arr[high];
 
-	for (size_t j = low; j <= high - 1; j++)
+	for (j = low; j <= high - 1; j++)
 	{
 		if (arr[j] <= pivot)
 		{
