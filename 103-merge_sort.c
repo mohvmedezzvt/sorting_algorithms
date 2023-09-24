@@ -26,11 +26,13 @@ void merge_sort(int *array, size_t size)
  */
 void splitter(int *array, int *temp, int low, int high)
 {
-	int mid;
+	int mid, size;
 
 	if (low < high)
 	{
-		mid = (low + high) / 2;
+		size = high - low + 1;
+		size = size % 2;
+		mid = (low + (high - size)) / 2;
 		splitter(array, temp, low, mid);
 		splitter(array, temp, mid + 1, high);
 		merge(array, temp, low, mid, high);
