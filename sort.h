@@ -27,8 +27,17 @@ void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
+/* quick sort function */
 void quick_sort(int *array, size_t size);
 void quicksort_helper(int *array, int low, int high, size_t size);
 int swapper(int *arr, int low, int high, size_t size);
 void swap(int *a, int *b);
+
+/* Advanced Functions */
+
+/*merge sort function*/
+void merge_sort(int *array, size_t size);
+void splitter(int *array, int *temp, int low, int high);
+void merge(int *array, int *temp, int low, int mid, int high);
+
 #endif /* SORT_H */
