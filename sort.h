@@ -19,6 +19,12 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
+/**
+ * swap - Swaps two integers.
+ * @a: Pointer to the first integer.
+ * @b: Pointer to the second integer.
+ */
+
 /* Assistance Functions */
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
@@ -31,7 +37,6 @@ void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void quicksort_helper(int *array, int low, int high, size_t size);
 int swapper(int *arr, int low, int high, size_t size);
-void swap(int *a, int *b);
 
 /* Merge Sort functions */
 void merge_sort(int *array, size_t size);

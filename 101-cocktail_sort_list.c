@@ -1,70 +1,107 @@
 #include "sort.h"
 
 /**
- * cocktail_sort_list - Sorts a doubly linked list of integers
- * in ascending order using the Cocktail Shaker Sort algorithm.
+ * swap_nodes - swaps the positions of two nodes in the list.
  *
- * @list: Pointer to a pointer to the head of the list.
+ * @left: left node.
+ * @right: right node.
  */
-void cocktail_sort_list(listint_t **list)
+void swap_nodes(listint_t *left, listint_t *right)
 {
-	int swapped;
-	listint_t *current, *end = NULL;
+	if (left->prev)
+		left->prev->next = right;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-		return;
+	if (right->next)
+		right->next->prev = left;
 
-	do {
-		swapped = 0;
-		current = *list;
+	left->next = right->next;
+	right->prev = left->prev;
 
-		while (current->next != end)
-		{
-			if (current->n > current->next->n)
-			{
-				swap_nodes(current, current->next);
-				swapped = 1;
-				print_list(*list);
-			} else
-				current = current->next;
-		}
-
-		if (!swapped)
-			break;
-
-		swapped = 0;
-		end = current;
-
-		while (current->prev != NULL)
-		{
-			if (current->n < current->prev->n)
-			{
-				swap_nodes(current->prev, current);
-				swapped = 1;
-				if (current->prev == NULL)
-					*list = current;
-				print_list(*list);
-			} else
-				current = current->prev;
-		}
-	} while (swapped);
+	right->next = left;
+	left->prev = right;
 }
 
 /**
- * swap_nodes - Swaps two nodes in a doubly linked list.
- * @n1: First node to be swapped.
- * @n2: Second node to be swapped.
+ * forward_pass - forward pass of the Cocktail Shaker Sort algorithm.
+ *
+ * @list: pointer to the linked list.
+ * @temp: temporary pointer for traversal.
+ * @sorted: flag to track whether any swaps were made.
  */
-void swap_nodes(listint_t *n1, listint_t *n2)
+void forward_pass(listint_t **list, listint_t **temp, int *sorted)
 {
-	if (n1->prev)
-		n1->prev->next = n2;
-	if (n2->next)
-		n2->next->prev = n1;
+	while ((*temp)->next)
+	{
+		if ((*temp)->n > (*temp)->next->n)
+		{
+			listint_t *n = (*temp)->next;
 
-	n1->next = n2->next;
-	n2->prev = n1->prev;
+			swap_nodes(*temp, n);
 
-	n1->prev = n2;
-	n2->next = n1;
+			if (!n->prev)
+				*list = n;
+
+			*sorted = 0;
+			print_list(*list);
+		}
+		else
+		{
+			*temp = (*temp)->next;
+		}
+	}
+}
+
+/**
+ * backward_pass -backward pass of the Cocktail Shaker Sort algorithm.
+ *
+ * @list: pointer to the linked list.
+ * @temp: temporary pointer for traversal.
+ * @sorted: flag to track whether any swaps were made.
+ */
+void backward_pass(listint_t **list, listint_t **temp, int *sorted)
+{
+	while ((*temp)->prev)
+	{
+		if ((*temp)->n < (*temp)->prev->n)
+		{
+			listint_t *p = (*temp)->prev;
+
+			swap_nodes(p, *temp);
+
+			if (!(*temp)->prev)
+				*list = *temp;
+
+			*sorted = 0;
+			print_list(*list);
+		}
+		else
+		{
+			*temp = (*temp)->prev;
+		}
+	}
+}
+
+/**
+ * cocktail_sort_list - sorts a linked list of integers in ascending order,
+ * using the Cocktail Shaker Sort algorithm.
+ *
+ * @list: a pointer to the list to be sorted.
+ */
+void cocktail_sort_list(listint_t **list)
+{
+	listint_t *temp;
+	int sorted = 0;
+
+	if (!list || !(*list))
+		return;
+
+	temp = *list;
+
+	while (!sorted)
+	{
+		sorted = 1;
+
+		forward_pass(list, &temp, &sorted);
+		backward_pass(list, &temp, &sorted);
+	}
 }
