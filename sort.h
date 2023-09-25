@@ -27,18 +27,23 @@ void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
-/* quick sort function */
+/* Quick Sort functions */
 void quick_sort(int *array, size_t size);
 void quicksort_helper(int *array, int low, int high, size_t size);
 int swapper(int *arr, int low, int high, size_t size);
 void swap(int *a, int *b);
 
-/* Advanced Functions */
-
-/*merge sort function*/
+/* Merge Sort functions */
 void merge_sort(int *array, size_t size);
 void splitter(int *array, int *temp, int low, int high);
 void merge(int *array, int *temp, int low, int mid, int high);
+
+/* Shell Sort functions */
 void shell_sort(int *array, size_t size);
 void shell_sort_helper(int *array, size_t size, int knuth);
+
+/* Cocktail shaker sort */
+void cocktail_sort_list(listint_t **list);
+void swap_nodes(listint_t *n1, listint_t *n2);
+
 #endif /* SORT_H */
