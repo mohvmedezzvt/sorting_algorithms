@@ -8,20 +8,23 @@
  */
 void shell_sort(int *array, size_t size)
 {
-    size_t i = 0;
-    int j = 0;
+	size_t i = 0;
+	int j = 0;
 
-    while (1)
-    {
-        i = 3 * i + 1;
-        if (i <= size)
-        {
-            j = i;
-        }
-        else
-            break;
-    }
-    shell_sort_helper(array, size, j);
+	if (array == NULL || size < 2)
+		return;
+
+	while (1)
+	{
+		i = 3 * i + 1;
+		if (i <= size)
+		{
+			j = i;
+		}
+		else
+			break;
+	}
+	shell_sort_helper(array, size, j);
 }
 /**
  * shell_sort_helper - sorts an array of integers in ascending order
@@ -33,24 +36,25 @@ void shell_sort(int *array, size_t size)
  */
 void shell_sort_helper(int *array, size_t size, int knuth)
 {
-    size_t j = 0;
-    int q = 0;
-    while (knuth >= 1)
-    {
-        j = knuth;
-        while (j < size)
-        {
-            q = j;
-            while (array[q] < array[q - knuth] && q >= knuth)
-            {
-                swap(&array[q], &array[q - knuth]);
-                q -= knuth;
-            }
-            j++;
-        }
-        print_array(array, size);
-        knuth = (knuth - 1) / 3;
-    }
+	size_t j = 0;
+	int q = 0;
+
+	while (knuth >= 1)
+	{
+		j = knuth;
+		while (j < size)
+		{
+			q = j;
+			while (array[q] < array[q - knuth] && q >= knuth)
+			{
+				swap(&array[q], &array[q - knuth]);
+				q -= knuth;
+			}
+			j++;
+		}
+		print_array(array, size);
+		knuth = (knuth - 1) / 3;
+	}
 }
 
 /**
@@ -61,7 +65,7 @@ void shell_sort_helper(int *array, size_t size, int knuth)
 
 void swap(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
