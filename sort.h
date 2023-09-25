@@ -39,5 +39,6 @@ void swap(int *a, int *b);
 void merge_sort(int *array, size_t size);
 void splitter(int *array, int *temp, int low, int high);
 void merge(int *array, int *temp, int low, int mid, int high);
-
+void shell_sort(int *array, size_t size);
+void shell_sort_helper(int *array, size_t size, int knuth);
 #endif /* SORT_H */
