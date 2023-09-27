@@ -62,7 +62,6 @@ void shell_sort_helper(int *array, size_t size, int knuth)
  * @a: Pointer to the first integer.
  * @b: Pointer to the second integer.
  */
-
 void swap(int *a, int *b)
 {
 	int temp = *a;
