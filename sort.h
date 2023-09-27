@@ -25,6 +25,12 @@ typedef struct listint_s
  * @b: Pointer to the second integer.
  */
 
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
 /* Assistance Functions */
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
@@ -50,5 +56,7 @@ void shell_sort_helper(int *array, size_t size, int knuth);
 /* Cocktail shaker sort */
 void cocktail_sort_list(listint_t **list);
 void swap_nodes(listint_t *n1, listint_t *n2);
+/* radix sort*/
+void radix_sort(int *array, size_t size);
 
 #endif /* SORT_H */
