@@ -19,18 +19,8 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-/**
- * swap - Swaps two integers.
- * @a: Pointer to the first integer.
- * @b: Pointer to the second integer.
- */
+void swap(int *a, int *b);
 
-void swap(int *a, int *b)
-{
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
 /* Assistance Functions */
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
